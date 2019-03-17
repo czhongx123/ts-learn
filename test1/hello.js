@@ -61,3 +61,5 @@ function getLength(something) {
     }
 }
 jQuery('#foo');
+var aaa;
+var directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];

@@ -86,3 +86,12 @@ function getLength(something: string | number): number {
 declare var jQuery: (selector: string) => any;
 jQuery('#foo');
 let aaa:string;
+
+declare enum Directions {
+    Up,
+    Down,
+    Left,
+    Right
+}
+
+let directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];
