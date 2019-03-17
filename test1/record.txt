@@ -1,0 +1,103 @@
+//学习记录
+
+-------------------------对象的类型，接口--interface----------------
+
+interface Person{
+    name:'string',
+    age:number
+}
+
+--可选属性 ？
+--任意属性 [propName:string]:any
+--只读属性 readonly
+
+-----------------------------数组的类型-----------------------------
+「类型 + 方括号」表示法
+let fibonacci: number[] = [1, 1, 2, 3, 5];
+
+数组的泛型
+let fibonacci:Array<number>= [1, 1, 2, 3, 5];
+
+用接口表示数组
+interface NumberArray{
+    [index:number]:number;
+}
+let fibonacci:NumberArray = [1, 1, 2, 3, 5];
+
+any 在数组中的应用
+let list: any[] = ['Xcat Liu', 25, { website: 'http://xcatliu.com' }];
+
+
+-------------------------函数的类型------------------------------
+
+function sum(x:number,y:number):number{
+    return x+y
+}
+
+let mySum:(x:number,y:number)=>number=function(x:number,y:number):number{
+    return x+y
+}
+
+用接口定义函数的形状
+interface SearchFuc{
+    (source:string,substring:string):boolean
+}
+
+let mySearch:SearchFuc
+mySearch=function(source:string,substring:string){
+    return source.indexOf(substring)!=-1
+}
+    
+
+可选参数---可选参数后面不允许再出现必须参数了
+参数默认值---TypeScript 会将添加了默认值的参数识别为可选参数,此时就不受「可选参数必须接在必需参数后面」的限制了
+
+剩余参数----可以使用 ...rest 的方式获取函数中的剩余参数，rest 参数只能是最后一个参数
+
+
+重载----重载允许一个函数接受不同数量或类型的参数时，作出不同的处理。
+function reverse(x: number): number;
+function reverse(x: string): string;
+function reverse(x: number | string): number | string {
+    if (typeof x === 'number') {
+        return Number(x.toString().split('').reverse().join(''));
+    } else if (typeof x === 'string') {
+        return x.split('').reverse().join('');
+    }
+}
+
+-----------------------------------类型断言------------------------------------------
+
+语法：<类型>值   或  值 as 类型
+function getLength(something: string | number): number {
+    if ((<string>something).length) {
+        return (<string>something).length;
+    } else {
+        return something.toString().length;
+    }
+}
+
+-----------------------------------声明文件------------------------------------------
+使用 declare var 来定义它的类型：
+declare var jQuery: (selector: string) => any;
+jQuery('#foo');
+
+通常我们会把声明语句放到一个单独的文件（jQuery.d.ts）中，这就是声明文件:
+declare var jQuery: (selector: string) => any;
+
+注意：声明文件必须以 .d.ts 为后缀
+更推荐的是使用 @types 统一管理第三方库的声明文件
+
+npm install @types/jquery --save-dev
+
+
+==================书写声明文件===============
+
+
+
+
+
+
+
+
+
