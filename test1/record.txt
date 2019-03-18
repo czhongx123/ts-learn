@@ -210,6 +210,59 @@ function createArray<T>(length: number, value: T): Array<T> {
 createArray<string>(3, 'x'); // ['x', 'x', 'x']
 
 T 用来指代任意输入的类型
+
+泛型的本质是参数化类型，通俗的将就是所操作的数据类型被指定为一个参数，
+这种参数类型可以用在类、接口和方法的创建中，分别成为泛型类，泛型接口、泛型方法;
+使用泛型的好处不仅能够检查类型，保证类型正确，而且能够提高代码的复用性
+/*假如我们有个方法  需要返回传进去的参数 */
+
+// function returnVal(x: number): number {
+//     return x;
+// }
+// returnVal(1);//不使用泛型的话这里只能传进去number类型
+
+/*这里使用any虽然可以传进去任何类型的值 但是无法保证返回值就是传进去的参数值*/
+// function returnVal(x: any): any {
+//     return "" + x;
+// }
+//
+// returnVal(1);
+/*这里使用泛型  不仅可以传任何类型的值  也能保证返回值类型的正确性  而且代码可以复用*/
+function returnVal<T>(x: T): T {
+    return x;
+}
+returnVal<number>(1);
+returnVal("1");
+returnVal(true);
+
+
+
+
+
+
+TypeScript支持泛型数组。当我们将参数类型指定为泛型数组，那么，也就代表着这个参数具有数组的所有属性和方法。
+
+/*这里使用泛型  不仅可以传任何类型的值  也能保证返回值类型的正确性  而且代码可以复用*/
+function returnVal<T>(x: T): T {
+    //console.log(x.length);//这里的参数可能是number或boolean，所以没有.length属性
+    return x;
+}
+returnVal<number>(1);
+returnVal("1");
+returnVal(true);
+
+function Arr<T>(arg: T[]): T[] {
+    console.log(arg.length);//这里的泛型数组，那么参数就会有数组所具有的属性和方法
+    arg.join("333");
+    return arg;
+}
+let a:Array<string>=["a","b"];
+Arr(a);
+Arr<string>(["1","2","a"]);
+
+
+
+
 ------------------------------------------声明合并---------------------------------------------
 interface Alarm {
     price: number;
