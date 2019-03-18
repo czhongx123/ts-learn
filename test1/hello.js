@@ -63,3 +63,66 @@ function getLength(something) {
 jQuery('#foo');
 var aaa;
 var directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];
+function getName(n) {
+    if (typeof n === 'string') {
+        return n;
+    }
+    else {
+        return n();
+    }
+}
+var sss;
+function handleEvent(ele, event) {
+    // do something
+}
+handleEvent(document.getElementById('hello'), 'scroll'); // 没问题
+handleEvent(document.getElementById('world'), 'mousemove'); // 报错，event 不能为 'dbclick'
+var Days;
+(function (Days) {
+    Days[Days["Sun"] = 0] = "Sun";
+    Days[Days["Mon"] = 1] = "Mon";
+    Days[Days["Tue"] = 2] = "Tue";
+    Days[Days["Wed"] = 3] = "Wed";
+    Days[Days["Thu"] = 4] = "Thu";
+    Days[Days["Fri"] = 5] = "Fri";
+    Days[Days["Sat"] = 6] = "Sat";
+})(Days || (Days = {}));
+;
+var dir = [0 /* Up */, 1 /* Down */, 2 /* Left */, 3 /* Right */];
+var Animal = /** @class */ (function () {
+    function Animal(name) {
+        this.name = name;
+    }
+    return Animal;
+}());
+var asx = new Animal('Jack');
+var Car = /** @class */ (function () {
+    function Car() {
+    }
+    Car.prototype.alert = function () {
+        console.log('Car alert');
+    };
+    Car.prototype.lightOn = function () {
+        console.log('Car light on');
+    };
+    Car.prototype.lightOff = function () {
+        console.log('Car light off');
+    };
+    return Car;
+}());
+var Point = /** @class */ (function () {
+    function Point() {
+    }
+    return Point;
+}());
+var point3d = { x: 1, y: 2, z: 3 };
+function getCounter() {
+    var counter = function (start) { };
+    counter.interval = 123;
+    counter.reset = function () { };
+    return counter;
+}
+var c = getCounter();
+c(10);
+c.reset();
+c.interval = 5.0;

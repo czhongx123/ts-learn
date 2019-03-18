@@ -95,3 +95,102 @@ declare enum Directions {
 }
 
 let directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right];
+
+interface Document extends Node, GlobalEventHandlers, NodeSelector, DocumentEvent {
+    addEventListener(type: string, listener: (ev: MouseEvent) => any, useCapture?: boolean): void;
+}
+
+type Name = string;
+type NameResolver = () => string;
+type NameOrResolver = Name | NameResolver;
+function getName(n: NameOrResolver): Name {
+    if (typeof n === 'string') {
+        return n;
+    } else {
+        return n();
+    }
+}
+let sss:string;
+type EventNames = 'click' | 'scroll' | 'mousemove';
+function handleEvent(ele: Element, event: EventNames) {
+    // do something
+}
+
+handleEvent(document.getElementById('hello'), 'scroll');  // 没问题
+handleEvent(document.getElementById('world'), 'mousemove'); // 报错，event 不能为 'dbclick'
+
+enum Days {Sun, Mon, Tue, Wed, Thu, Fri, Sat};
+
+const enum Dir {
+    Up,
+    Down,
+    Left,
+    Right
+}
+
+let dir = [Dir.Up, Dir.Down, Dir.Left, Dir.Right];
+
+class Animal {
+    private name: any;
+    public constructor(name) {
+        this.name = name;
+    }
+}
+
+let asx = new Animal('Jack');
+// console.log(asx.name); // Jack
+// asx.name = 'Tom'
+
+
+
+interface Alarm {
+    alert();
+}
+
+interface Light {
+    lightOn();
+    lightOff();
+}
+
+class Car implements Alarm, Light {
+    alert() {
+        console.log('Car alert');
+    }
+    lightOn() {
+        console.log('Car light on');
+    }
+    lightOff() {
+        console.log('Car light off');
+    }
+}
+
+class Point {
+    x: number;
+    y: number;
+}
+
+interface Point3d extends Point {
+    z: number;
+}
+
+let point3d: Point3d = {x: 1, y: 2, z: 3};
+
+
+
+interface Counter {
+    (start: number): string;
+    interval: number;
+    reset(): void;
+}
+
+function getCounter(): Counter {
+    let counter = <Counter>function (start: number) { };
+    counter.interval = 123;
+    counter.reset = function () { };
+    return counter;
+}
+
+let c = getCounter();
+c(10);
+c.reset();
+c.interval = 5.0;
