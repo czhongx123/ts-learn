@@ -260,6 +260,33 @@ let a:Array<string>=["a","b"];
 Arr(a);
 Arr<string>(["1","2","a"]);
 
+泛型方法
+function A<T>(arg: T): T {
+    return arg;
+}
+// let funA:(a:string)=>string=A;
+let funA:(a:number)=>number=A;
+// funA("1");
+funA(1);
+
+/*我们还可以使用带有调用签名的对象字面量来定义泛型函数：*/
+let funA1:{<T>(arg:T):T}=A;
+
+泛型接口
+interface GenericIdentityFn {
+    <T>(arg: T): T;
+}
+
+function identity<T>(arg: T): T {
+    return arg;
+}
+
+let myIdentity: GenericIdentityFn = identity;
+
+
+
+
+
 
 
 
